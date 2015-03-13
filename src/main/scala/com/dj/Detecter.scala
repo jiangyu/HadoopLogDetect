@@ -49,6 +49,6 @@ object Detecter {
 
     val pattern = ("^"+yesterday+".*(java.lang.OutOfMemoryError|ShuffleError).*").r.pattern
     val all = fileAndLine.filter{case(name,line) => pattern.matcher(line).matches}.repartition(1)
-    all.saveAsTextFile(dir+"/"+lastFileName)
+    all.saveAsTextFile("hdfs://ns1/user/mapred/error/"+lastFileName)
   }
 }
